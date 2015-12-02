@@ -33,6 +33,9 @@ board.on("ready", function() {
 	//Para tercer piso
 	var miLed11 = new five.Led(11);
 
+	//Para cuarto piso
+	var miLed10 = new five.Led(10);
+
 
 	//console.log(miLed instanceof Array);
 
@@ -83,6 +86,22 @@ board.on("ready", function() {
 
 			console.log("Apagar tercero");
 			miLed11.stop().off();
+
+		});
+
+
+		//Cuarto
+		socket.on('cuarto', function(){
+
+			console.log("Prender cuarto")
+			miLed10.on();
+
+		});
+
+		socket.on('apagarPiso4', function(){
+
+			console.log("Apagar cuarto");
+			miLed10.stop().off();
 
 		});
 

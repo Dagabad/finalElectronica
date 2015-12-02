@@ -37,17 +37,18 @@ function tercerPisoApagar(){
 }
 
 
-
-
-/*
-function secundoPiso(){
-	socket.emit('secundo');
+//Prender cuarto piso
+function cuartoPiso(){
+	socket.emit('cuarto');
 }
 
-function secundoPiso(){
-	socket.emit('tercero');
-}*/
+//Apagar cuarto piso
+function cuartoPisoApagar(){
+	socket.emit('apagarPiso4');
+}
 
+
+//Recogiendo el id de la vista (html)
 document.getElementById('piso1').onclick = primerPiso;
 document.getElementById('apagarPiso1').onclick = primerPisoApagar;
 
@@ -56,4 +57,7 @@ document.getElementById('apagarPiso2').onclick = secundoPisoApagar;
 
 document.getElementById('piso3').onclick = 	tercerPiso;
 document.getElementById('apagarPiso3').onclick = tercerPisoApagar;
+
+document.getElementById('piso4').onclick = 	cuartoPiso;
+document.getElementById('apagarPiso4').onclick = cuartoPisoApagar;
 
