@@ -23,35 +23,68 @@ board.on("ready", function() {
 
 	//Recomendacion sanchez
 	//var miLed = [13,12,11];
-	var miLed = new five.Led(13);
 
-	console.log(miLed instanceof Array);
+	//Para primer piso
+	var miLed13 = new five.Led(13);
+
+	//Para secundo piso
+	var miLed12 = new five.Led(12);
+
+	//Para tercer piso
+	var miLed11 = new five.Led(11);
+
+
+	//console.log(miLed instanceof Array);
 
 	io.on('connection', function(socket){
 
 		socket.on('primero', function(){
 
-			console.log("Prender")
-			miLed.on();
+			console.log("Prender Primero")
+			miLed13.on();
 			//led.blink(1000);
 
 		});
 
-		socket.on('secundo', function(){
+		socket.on('apagarPiso1', function(){
 
-			console.log("Apagar");
-			miLed.stop().off();
+			console.log("Apagar Primero");
+			miLed13.stop().off();
 
 		});
 
-		/*
+		//Secundo
 		socket.on('secundo', function(){
 
-			console.log("250")
-			var led2 = new five.Led(12);
-			led2.blink(250);
+			console.log("Prender Secundo")
+			miLed12.on();
+			//led.blink(1000);
 
-		});*/
+		});
+
+		socket.on('apagarPiso2', function(){
+
+			console.log("Apagar Secundo");
+			miLed12.stop().off();
+
+		});
+
+
+		//Tercero
+		socket.on('tercero', function(){
+
+			console.log("Prender Tercero")
+			miLed11.on();
+			//led.blink(1000);
+
+		});
+
+		socket.on('apagarPiso3', function(){
+
+			console.log("Apagar tercero");
+			miLed11.stop().off();
+
+		});
 
 	});
 
