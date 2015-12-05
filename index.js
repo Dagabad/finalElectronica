@@ -18,6 +18,8 @@ app.get('/', function(req, res){
 	res.sendFile('/index.html');
 });
 
+var LEDPIN = 2;
+
 //Adentro código arduino
 board.on("ready", function() {
 
@@ -36,10 +38,70 @@ board.on("ready", function() {
 	//Para cuarto piso
 	var miLed10 = new five.Led(10);
 
+	//Pin de entrada, recibe 0 o 1 Primer piso
+	var pinEnt1 = new five.Pin(1);	
 
-	//console.log(miLed instanceof Array);
+	//Pin de entrada, recibe 0 o 1 Segundo piso
+	var pinEnt2 = new five.Pin(2);
+
+	//Pin de entrada, recibe 0 o 1 Tercer piso
+	var pinEnt3 = new five.Pin(3);	
+
+	//Pin de entrada, recibe 0 o 1 Cuarto piso
+	var pinEnt4 = new five.Pin(4);
+
+	
+	five.Pin.read(pinEnt1, function(error, value) {
+  		//console.log(value);
+  		if(value == '1'){
+  			//prenda todos los leds
+  			console.log("Encender");
+  			miLed13.on();
+  		}/*else{
+  			console.log("Apagar leds");
+  			miLed12.stop().off();
+  		}*/
+	});
+
+	five.Pin.read(pinEnt2, function(error, value) {
+  		//console.log(value);
+  		if(value == '1'){
+  			//prenda todos los leds
+  			console.log("Encender");
+  			miLed12.on();
+  		}/*else{
+  			console.log("Apagar leds");
+  			miLed12.stop().off();
+  		}*/
+	});
+
+	five.Pin.read(pinEnt3, function(error, value) {
+  		//console.log(value);
+  		if(value == '1'){
+  			//prenda todos los leds
+  			console.log("Encender");
+  			miLed11.on();
+  		}/*else{
+  			console.log("Apagar leds");
+  			miLed12.stop().off();
+  		}*/
+	});
+
+	five.Pin.read(pinEnt4, function(error, value) {
+  		//console.log(value);
+  		if(value == '1'){
+  			//prenda todos los leds
+  			console.log("Encender");
+  			miLed10.on();
+  		}/*else{
+  			console.log("Apagar leds");
+  			miLed12.stop().off();
+  		}*/
+	});
 
 	io.on('connection', function(socket){
+
+		
 
 		socket.on('primero', function(){
 
@@ -108,23 +170,7 @@ board.on("ready", function() {
 	});
 
 
-	/*
-	var respuesta = "n";
-
-	if (respuesta == "s") {
-		console.log("1000")
-		var led = new five.Led(13);
-		led.blink(1000);
-	}else{
-		console.log("250")
-		var led = new five.Led(13);
-		led.blink(250);
-	};
-
-	/*
-	console.log("Esta conectado con arduino")
-	var led = new five.Led(13);
-	led.blink(250);*/
+	
 });
 
 console.log("\nEsperando a que inicialice el dispositivo...");
